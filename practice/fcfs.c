@@ -20,10 +20,14 @@ int main() {
     }
     int current_time = 0;
     for (int i = 0; i < n; i++) {
+        if(current_time < p[i].arrival_time)
+            current_time=p[i].arrival_time;
+
         int completion = current_time + p[i].burst_time;
+        printf("\ncompletion:%d->%d",i+1,completion);
         p[i].tt = completion - p[i].arrival_time;
         p[i].waiting_time = p[i].tt - p[i].burst_time;
-        current_time = current_time + p[i].burst_time;
+        current_time += p[i].tt ;
     }
 
     for (int i = 0; i < n; i++) {
